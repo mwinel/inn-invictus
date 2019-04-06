@@ -15,7 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from api.accounts import views
+from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import refresh_jwt_token
+from rest_framework_jwt.views import verify_jwt_token
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r"^admin/", admin.site.urls),
+    url(r"^api/token/", obtain_jwt_token),
+    url(r"^api/token/refresh/", refresh_jwt_token),
+    url(r"^api/token/verify/", verify_jwt_token),
+    url(r"^hello/", views.HelloView.as_view(), name="hello"),
+    url(r"^accounts/profile/<int:pk>", views.UserDetail.as_view(), name="user"),
+    url(r"^accounts/users/", views.UserList.as_view(), name="users"),
+    url(r"^accounts/login/", views.Login.as_view(), name="login"),
+    url(r"^accounts/signup/", views.SignUp.as_view(), name="signup"),
 ]
