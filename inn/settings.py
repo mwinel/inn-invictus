@@ -60,10 +60,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "inn.urls"
 
+# TEMPLATES = [{'DIRS': [BASE_DIR+"/templates",],}]
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR+"/inn/templates", ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -114,31 +115,34 @@ REST_FRAMEWORK = {
 }
 
 # JWT_AUTH = {"JWT_AUTH_HEADER_PREFIX": "Bearer"}
-# Configure the JWTs to expire after 1 hour, and allow users to refresh near-expiration tokens
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
     'JWT_ALLOW_REFRESH': True,
 }
 
+# stop allauth from tryng to find an smtp server
+# on this machine & print mails to console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Enables django-rest-auth to use JWT tokens instead of regular tokens.
 REST_USE_JWT = True
 
-
-#required for the django.contrib.sites dependency.
+# required for the django.contrib.sites dependency.
 SITE_ID = 1
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+        "NAME":
+        "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
     },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+    {"NAME":
+        "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME":
+        "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 
