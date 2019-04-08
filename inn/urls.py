@@ -1,21 +1,35 @@
-"""inn URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import url
-from django.contrib import admin
+from api.accounts import views
+from rest_auth import views as auth_views
+from rest_auth.registration.views import RegisterView, VerifyEmailView
+from rest_framework_jwt.views import refresh_jwt_token
+from allauth.account.views import ConfirmEmailView
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^$', views.Home, name="home"),
+
+    url(r'^api/v1/auth/password/reset/$', auth_views.PasswordResetView.as_view(),
+        name='password_reset'),
+    url(r'^api/v1/auth/password/reset/confirm/$',
+        auth_views.PasswordResetConfirmView.as_view(),
+        name='confirm_account_logout'),
+    url(r'^api/v1/auth/login/$', auth_views.LoginView.as_view(),
+        name='account_login'),
+    url(r'^api/v1/auth/logout/$', auth_views.LogoutView.as_view(),
+        name='account_logout'),
+    url(r'^accounts/user/$', auth_views.UserDetailsView.as_view(),
+        name='account_user'),
+    url(r'^api/v1/auth/password/change/$',
+        auth_views.PasswordChangeView.as_view(),
+        name='password_change'),
+
+    url(r'^api/v1/auth/signup/', RegisterView.as_view(), name='account_signup'),
+    url(r'^refresh-token/$', refresh_jwt_token),
+    url(r'^accounts/users/$', views.UserList.as_view(), name="users"),
+    url(r'^accounts/verify-email/$', VerifyEmailView.as_view(),
+        name='rest_verify_email'),
+    url(r'^accounts/confirmemail/(?P<key>[-:\w]+)/$',
+        ConfirmEmailView.as_view(),
+        name='account_confirm_email'),
 ]
