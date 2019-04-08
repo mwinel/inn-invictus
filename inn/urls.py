@@ -1,6 +1,6 @@
 
 from django.conf.urls import url
-from . import views
+from api.accounts import views
 from rest_auth import views as auth_views
 from rest_auth.registration.views import RegisterView, VerifyEmailView
 from rest_framework_jwt.views import refresh_jwt_token
