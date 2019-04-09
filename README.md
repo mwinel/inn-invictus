@@ -12,12 +12,14 @@ INN is a media app that enables Independent Journalists share their news stories
 
   - user should be able to create account.[signup](http://127.0.0.1:8000/api/v1/auth/signup/)
   - user should be able to login
-  - user(journalist) should be able to create a story.
-  - user(journalist) should be able to delete a story.
-  - user(journalist) should be able to update a story.
-  - user(journalist) should be able to create a story.
-  - moderator should be able to comment on story.
-  - admin should be able to approve story.
+  - user(journalist) should be able to create a news story.
+  - user(journalist) should be able to delete a news story.
+  - user(journalist) should be able to update a news story.
+  - user(journalist) should be able to create a news story.
+  - moderator should be able to approve a news story.
+  - admin should be able to delete a news story.
+  - random user should be able to add a comment.
+  - random user should be able to add a reaction to a comment.
 
 ### Technologies
 - [Python 3.6](https://www.python.org/) - Python is an interpreted, high-level, general-purpose programming language.
