@@ -10,7 +10,7 @@ INN is a media app that enables Independent Journalists share their news stories
 
 # Features!
 
-  - user should be able to create account.[signup](http://127.0.0.1:8000/api/v1/auth/signup/)
+  - user should be able to create account.
   - user should be able to login
   - user(journalist) should be able to create a news story.
   - user(journalist) should be able to delete a news story.
