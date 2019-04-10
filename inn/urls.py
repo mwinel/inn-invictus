@@ -4,7 +4,10 @@ from api.accounts import views
 from rest_auth import views as auth_views
 from rest_auth.registration.views import RegisterView, VerifyEmailView
 from rest_framework_jwt.views import refresh_jwt_token
+from rest_framework.urlpatterns import format_suffix_patterns
 from allauth.account.views import ConfirmEmailView
+from api.story.views import CreateViewStory, ViewStory
+
 
 urlpatterns = [
     url(r'^$', views.Home, name="home"),
@@ -32,4 +35,6 @@ urlpatterns = [
     url(r'^accounts/confirmemail/(?P<key>[-:\w]+)/$',
         ConfirmEmailView.as_view(),
         name='account_confirm_email'),
+    url(r'^api/v1/story/$', CreateViewStory.as_view(), name='create_story'),
+    url(r'^api/v1/story/(?P<pk>[0-9]+)/$', ViewStory.as_view(), name='view_story'),
 ]
