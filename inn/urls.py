@@ -7,7 +7,8 @@ from rest_framework_jwt.views import refresh_jwt_token
 from rest_framework.urlpatterns import format_suffix_patterns
 from allauth.account.views import ConfirmEmailView
 from api.story.views import CreateViewStory, ViewStory
-
+from api.comments.views import CreateViewComment, ViewComment
+from django.urls import include, re-path
 
 urlpatterns = [
     url(r'^$', views.Home, name="home"),
@@ -37,4 +38,7 @@ urlpatterns = [
         name='account_confirm_email'),
     url(r'^api/v1/story/$', CreateViewStory.as_view(), name='create_story'),
     url(r'^api/v1/story/(?P<pk>[0-9]+)/$', ViewStory.as_view(), name='view_story'),
+
+    path("api/v1/comment/$", CreateViewComment.as_view(), name='create_comment'),
+    path("api/v1/comment/<int: pk>", ViewComment.as_view(), name='view_comment'),
 ]
