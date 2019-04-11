@@ -85,6 +85,7 @@ authors
 
 # Acknowledgements
 > [Nelson Mwirumubi](https://github.com/mwinel)
+> jean
 
 
   
